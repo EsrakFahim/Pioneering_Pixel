@@ -7,7 +7,7 @@ import Spacing from "@/app/ui/Spacing";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
-import imgUrl from '../../../../public/images/post_5.jpeg';
+import imgUrl from '/public/images/post_5.jpeg';
 
 export default function BlogDetailsPage() {
   return (

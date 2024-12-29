@@ -6,7 +6,7 @@ import PageHeading from "@/app/ui/PageHeading";
 import SectionHeading from "@/app/ui/SectionHeading";
 import Spacing from "@/app/ui/Spacing";
 import Image from "next/image";
-import imgUrl from '../../../../public/images/portfolio_details_1.jpeg'
+import imgUrl from '/public/images/portfolio_details_1.jpeg'
 import { useParams } from "next/navigation";
 import useFetchSingleData from "@/API/FetchSingleData";
 import Loader from "@/app/ui/Loader/Loader";

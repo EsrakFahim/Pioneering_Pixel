@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import parse from 'html-react-parser';
 import Button from '../Button';
 import Div from '../Div';
-import imgUrl from "../../../../public/images/hero_img_1.png"
+import imgUrl from "/public/images/hero_img_1.png"
 import Image from 'next/image';
 
 export default function Hero9({

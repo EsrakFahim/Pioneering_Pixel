@@ -2,11 +2,11 @@
 import useFetchDataFromDB from "@/API/FetchData";
 import Cta from "@/app/ui/Cta";
 import Div from "@/app/ui/Div";
+import Loader from "@/app/ui/Loader/Loader";
 import PageHeading from "@/app/ui/PageHeading";
 import SectionHeading from "@/app/ui/SectionHeading";
 import Spacing from "@/app/ui/Spacing";
 import Team from "@/app/ui/Team";
-import Loader from "../ui/Loader/Loader";
 
 const teamData = [
   {

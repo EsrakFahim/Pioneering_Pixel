@@ -4,7 +4,7 @@ import Div from "@/app/ui/Div"
 import PageHeading from "@/app/ui/PageHeading"
 import Spacing from "@/app/ui/Spacing"
 import SocialWidget from "@/app/ui/Widget/SocialWidget"
-import imgUrl from '../../../../public/images/member_details_1.jpeg'
+import imgUrl from '/public/images/member_details_1.jpeg'
 import Image from "next/image"
 import { useParams } from "next/navigation"
 import useFetchSingleData from "@/API/FetchSingleData"

@@ -2,7 +2,7 @@ import React from 'react';
 import parse from 'html-react-parser';
 import Button from '../Button';
 import Image from 'next/image';
-import shape1Url from "../../../../public/images/hero_img_2.png"
+import shape1Url from "/public/images/hero_img_2.png"
 
 export default function Hero10({
   title,
