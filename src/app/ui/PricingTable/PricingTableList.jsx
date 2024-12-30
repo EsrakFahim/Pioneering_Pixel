@@ -9,6 +9,8 @@ export default function PricingTableList() {
   const { data, isLoading, isError } = useFetchDataFromDB('price-plan');
   const [tab, setTab] = useState('monthly');
 
+  console.log(data);
+
   if (isLoading) return <Loader />;
   if (isError) return <div>Something went wrong</div>;
 
@@ -31,26 +33,34 @@ export default function PricingTableList() {
       </ul>
 
       <Section className="row align-items-stretch">
-        {data?.data?.map((plan, index) => (
-          <Section className="col-lg-4 d-flex" key={index}>
-            {plan.published ? (
-              <PricingTable
-                title={plan.title}
-                price={tab === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice}
-                currency={plan.currency}
-                timeline={tab}
-                features={plan.features}
-                btnText={plan.btnText}
-                btnLink={plan.btnLink || '/contact'}
-              />
-            ) : (
-              <Div className="cs-pricing_table cs-style1 d-flex align-items-center justify-content-center">
-                <h2 className="cs-coming_soon">Coming Soon</h2>
-              </Div>
-            )}
-          </Section>
-        ))}
+        {data?.data
+          ?.sort((a, b) => {
+            // Sort unpublished plans to the end
+            if (!a.published && b.published) return 1;
+            if (a.published && !b.published) return -1;
+            return 0;
+          })
+          .map((plan, index) => (
+            <Section className="col-lg-4 d-flex" key={index}>
+              {plan.published ? (
+                <PricingTable
+                  title={plan.title}
+                  price={tab === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice}
+                  currency={plan.currency}
+                  timeline={tab}
+                  features={plan.features}
+                  btnText={plan.btnText}
+                  btnLink={plan.btnLink || '/contact'}
+                />
+              ) : (
+                <Div className="cs-pricing_table cs-style1 d-flex align-items-center justify-content-center">
+                  <h2 className="cs-coming_soon">Coming Soon</h2>
+                </Div>
+              )}
+            </Section>
+          ))}
       </Section>
+
     </Section>
   );
 }

@@ -3,6 +3,8 @@ import Portfolio from '../Portfolio';
 import Div from '../Div';
 import Slider from 'react-slick';
 import { Icon } from '@iconify/react';
+import useFetchDataFromDB from '@/API/FetchData';
+import Loader from '../Loader/Loader';
 const portfolioData = [
   {
     title: 'Colorful Art Work',
@@ -54,6 +56,16 @@ const portfolioData = [
   },
 ];
 export default function PortfolioSlider2() {
+
+  const {
+    data: projectsData,
+    isLoading: projectsLoading,
+    isError: projectsError,
+  } = useFetchDataFromDB('projects/all');
+
+
+  if (projectsLoading) return <Loader />;
+  if (projectsError) return <div>Error loading data...</div>;
   /** Slider Settings **/
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
     <div
@@ -116,13 +128,13 @@ export default function PortfolioSlider2() {
 
   return (
     <Slider {...settings} className="cs-gap-12 cs-arrow_style4">
-      {portfolioData.map((item, index) => (
+      {projectsData?.data?.slice(0, 10)?.map((item, index) => (
         <Div key={index}>
           <Portfolio
-            title={item.title}
-            subtitle={item.subtitle}
-            href={item.href}
-            src={item.src}
+            title={item?.name}
+            subtitle={item?.subtitle || 'See Details'}
+            href={`/portfolio/${item?._id}`}
+            src={item?.files[0]?.url || '/images/portfolio_4.jpeg'}
             variant="cs-style1 cs-type2 cs-size3"
           />
         </Div>

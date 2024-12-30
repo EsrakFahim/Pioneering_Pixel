@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+"use client";
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Div from '../Div';
+import useFetchDataFromDB from '@/API/FetchData';
+import Loader from '../Loader/Loader';
 
 const serviceData = [
   {
@@ -38,20 +42,37 @@ export default function ServiceList({ variant }) {
   const handelActive = index => {
     setActive(index);
   };
+
+  const { data, isLoading, isError } = useFetchDataFromDB('service');
+
+
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
+
+  console.log("All Services Here", data);
+  if (isLoading) return <Loader />;
+  if (isError) return <div>Something went wrong</div>;
+
   return (
     <Div className={`cs-iconbox_3_list ${variant ? variant : ''}`}>
-      {serviceData.map((item, index) => (
+      {data?.data?.slice(0,4)?.map((item, index) => (
         <Div
           className={`cs-hover_tab ${active === index ? 'active' : ''}`}
           key={index}
           onMouseEnter={() => handelActive(index)}
         >
-          <Link href={item.href} className="cs-iconbox cs-style3">
+          <Link href={`/service/${item?.slug}`} className="cs-iconbox cs-style3">
             <>
               <Div className="cs-image_layer cs-style1 cs-size_md">
                 <Div className="cs-image_layer_in">
                   <img
-                    src={item.imgUrl}
+                    src={item.coverImage}
                     alt="Thumb"
                     className="w-100 cs-radius_15"
                   />
@@ -73,7 +94,7 @@ export default function ServiceList({ variant }) {
               </span>
               <Div className="cs-iconbox_in">
                 <h2 className="cs-iconbox_title">{item.title}</h2>
-                <Div className="cs-iconbox_subtitle">{item.subtitle}</Div>
+                <Div className="cs-iconbox_subtitle">{item?.subtitle || "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"}</Div>
               </Div>
             </>
           </Link>
