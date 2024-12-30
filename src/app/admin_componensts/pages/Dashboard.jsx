@@ -1,5 +1,6 @@
-import PanelCard from "../components/PanelCard";
-import ActivityLog from "../components/ActivityLog";
+import ActivityLog from "../Components/ActivityLog";
+import PanelCard from "../Components/PanelCard";
+
 
 const Dashboard = () => {
   return (
