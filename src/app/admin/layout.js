@@ -15,17 +15,17 @@ const RootLayout = ({ children }) => {
                         <meta name="author" content="GalaxySpark" />
                         <link
                               rel="icon"
-                              href="/images/faviconGS.png"
+                              href="/images/favicon.png"
                               sizes="any"
                               type="image/png"
                         />
                         <link
                               rel="apple-touch-icon"
-                              href="/images/faviconGS.png"
+                              href="/images/favicon.png"
                         />
                         <link
                               rel="shortcut icon"
-                              href="/images/faviconGS.png"
+                              href="/images/favicon.png"
                               type="image/x-icon"
                         />
                   </head>
